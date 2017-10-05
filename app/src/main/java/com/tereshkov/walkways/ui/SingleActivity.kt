@@ -9,23 +9,20 @@ import com.tereshkov.walkways.Screens
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
-import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 
-
-class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
+class SingleActivity : AppCompatActivity(), HasSupportFragmentInjector {
     @Inject lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
     @Inject lateinit var router: Router
     @Inject lateinit var navigationHolder: NavigatorHolder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
-        router.replaceScreen(Screens.MAIN_SCREEN)
+        setContentView(R.layout.activity_single)
+        router.replaceScreen(Screens.MANY_USE_SCREEN)
     }
 
     override fun onResumeFragments() {
@@ -40,15 +37,11 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentInjector
 
-    private val navigator = object : SupportAppNavigator(this, R.id.mainContainer) {
-        override fun createActivityIntent(screenKey: String?, data: Any?): Intent? = when (screenKey) {
-            Screens.SUB_MENU_SCREEN -> Intent(this@MainActivity, SingleActivity::class.java)
-            else -> null
-        }
+    private val navigator = object : SupportAppNavigator(this, R.id.container) {
+        override fun createActivityIntent(screenKey: String?, data: Any?): Intent? = null
 
         override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
-            Screens.MAIN_SCREEN -> MainActivityFragment()
-            Screens.RECTANGLE -> RectangleFragment.newInstance()
+            Screens.MANY_USE_SCREEN -> ManyUseFragment.newInstance(data?.let { it as Boolean } ?: true)
             else -> null
         }
     }

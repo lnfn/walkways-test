@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_gradient"
     tools:context="com.tereshkov.walkways.ui.MainActivityFragment">
 
     <EditText
@@ -17,6 +18,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/subMenuButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GoToFragmentWithSubMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/queryEditText" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
@@ -26,35 +36,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectButton" />
-
-    <Button
-        android:id="@+id/rectButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Rectangle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/queryEditText" />
-
-    <Button
-        android:id="@+id/couButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="couButton"
-        app:layout_constraintStart_toEndOf="@+id/rectButton"
-        app:layout_constraintTop_toBottomOf="@+id/queryEditText" />
-
-    <Button
-        android:id="@+id/canButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="canButton"
-        app:layout_constraintStart_toEndOf="@+id/couButton"
-        app:layout_constraintTop_toBottomOf="@+id/queryEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/subMenuButton" />
 </android.support.constraint.ConstraintLayout>
