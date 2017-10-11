@@ -1,6 +1,7 @@
 package com.tereshkov.walkways.ui
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -8,12 +9,15 @@ import android.view.View
 import com.tereshkov.walkways.EventsAdapter
 import com.tereshkov.walkways.R
 import com.tereshkov.walkways.data.BusSheduleEvents
+import com.tereshkov.walkways.di.Injectable
 import com.tereshkov.walkways.viewmodels.MainActivityFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
+import javax.inject.Inject
 
 
-class MainActivityFragment : BaseFragment() {
+class MainActivityFragment : BaseFragment(), Injectable {
     override val layoutId: Int = R.layout.fragment_main
+    @Inject lateinit var factory: ViewModelProvider.Factory
     private lateinit var vm: MainActivityFragmentViewModel
     private val mAdapter: EventsAdapter = EventsAdapter()
 

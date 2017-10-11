@@ -4,6 +4,7 @@ package com.tereshkov.walkways.ui
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import com.tereshkov.walkways.Eugene
 import com.tereshkov.walkways.R
 import com.tereshkov.walkways.Screens
 import com.tereshkov.walkways.di.Injectable
@@ -14,12 +15,14 @@ import javax.inject.Inject
 
 class ManyUseFragment : BaseFragment(), Injectable {
     @Inject lateinit var router: Router
+    @Inject lateinit var iAm: Eugene
     override val layoutId: Int = R.layout.fragment_meny_use
 
     private val listener: (view: View) -> Unit = { view ->
         when (view.id) {
             R.id.manyUseButton -> router.navigateTo(Screens.MANY_USE_SCREEN)
             R.id.manyUseFullButton -> router.navigateTo(Screens.MANY_USE_SCREEN, false)
+            R.id.localeContainerButton -> router.navigateTo(Screens.LOCALE_CONTAINER_SCREEN)
         }
     }
 
@@ -29,7 +32,7 @@ class ManyUseFragment : BaseFragment(), Injectable {
             toolbar.apply {
                 visibility = View.VISIBLE
                 title = "Мэни юз фрагмент"
-                setBackgroundColor(Color.parseColor("#ed3d51"))
+                setBackgroundColor(Color.parseColor("#ffffff"))
                 setNavigationOnClickListener { router.exit() }
             }
         } else {
@@ -38,6 +41,7 @@ class ManyUseFragment : BaseFragment(), Injectable {
 
         manyUseButton.setOnClickListener(listener)
         manyUseFullButton.setOnClickListener(listener)
+        localeContainerButton.setOnClickListener(listener)
     }
 
     companion object {
