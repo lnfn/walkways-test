@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction
 import com.tereshkov.walkways.*
 import com.tereshkov.walkways.di.Injectable
 import ru.terrakok.cicerone.Navigator
+import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
@@ -61,7 +62,7 @@ class LocalFragment : BaseFragment(), Injectable, RouterProvider, BackButtonList
         return true
     }
 
-    override fun getRouter() = getCicerone().router
+    override fun getRouter(): Router = getCicerone().router
 
     private fun getCicerone() = ciceroneHolder.getCicerone(LOCAL_FRAGMENT_CICERONE)
 
